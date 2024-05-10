@@ -62,11 +62,11 @@ class DAL {
             $vl1 =  $column_value ;
         }
 
-        $sql= "SELECT * FROM {$argument['table']} WHERE {$cl1} = {$vl1} ";
+       $sql=$this->_connection->prepare("SELECT * FROM {$argument['table']} WHERE {$cl1} = {$vl1} ");
 
-        $this->_connection->exec($sql);
+        $sql->execute();
 
-        $result = $this->_connection->fetchALL(PDO::FETCH_ASSOC);
+        $result = $sql->fetchALL(PDO::FETCH_ASSOC);
 
         echo "<pre>";
         print_r($result);
